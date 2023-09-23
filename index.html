@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -41,7 +41,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" v-if="state == 1">
             <!--  -->
             <div class="row">
               <div class="col">
@@ -167,6 +167,116 @@
                     </div>
                   </div>
                 </div>
+                <div class="row mt-2">
+                  <div class="col d-flex justify-content-end">
+                    <button
+                      type="button"
+                      class="btn btn-info"
+                      @click="fazerPedido()"
+                    >
+                      Finalizar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  -->
+          <div class="col-md-6" v-if="state == 2">
+            <!--  -->
+            <div class="row">
+              <div class="col">
+                <div class="card">
+                  <div class="card-header">Informe seus dados</div>
+                  <div class="card-body">
+                    <div class="input-group input-group-sm mb-3">
+                      <span class="input-group-text">Nome</span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        aria-label="Informe seu Nome"
+                        aria-describedby="inputGroup-sizing-sm"
+                        id=""
+                        v-model="inputName"
+                      />
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                      <span class="input-group-text">Endereço</span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        aria-label="Informe seu endereço"
+                        aria-describedby="inputGroup-sizing-sm"
+                        id=""
+                        v-model="inputAddress"
+                      />
+                    </div>
+                    <p>
+                      Seu pedido é um hambúrguer com pão
+                      <span v-if="inputBread === 'gergilim'"
+                        >de Gergelim,
+                      </span>
+                      <span v-else>{{ inputBread }},</span>
+                      <span v-if="inputSalad.length === 0"> sem salada, </span>
+                      <span v-else>
+                        com salada de {{ inputSalad.join(', ') }},</span
+                      >
+                      <span v-if="inputSauce.length === 0"> sem molho, </span>
+                      <span v-else>
+                        com os molhos {{ inputSauce.join(', ') }},</span
+                      >
+                      e bife de {{inputMeat}}
+                    </p>
+                    <span v-if="inputAddress && inputName">
+                      <p>No endereço: {{inputAddress}}, para {{inputName}}</p>
+                    </span>
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col d-flex justify-content-end gap-3">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      @click="state -= 1"
+                    >
+                      Retornar
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-success"
+                      @click="finalizarPedido()"
+                    >
+                      Finalizar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  -->
+          <div class="col-md-6" v-if="state == 3">
+            <!--  -->
+            <div class="row">
+              <div class="col">
+                <div class="card">
+                  <div class="card-header">Pedido Confirmado</div>
+                  <div class="card-body">
+                    <p>
+                      Agora é so aguardar em quanto seu pedido será preparado
+                    </p>
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col d-flex justify-content-center gap-3">
+                    <button
+                      type="button"
+                      class="btn btn-success"
+                      @click="novoPedido()"
+                    >
+                      Realizar outro pedido
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -182,6 +292,10 @@
           inputSalad: [],
           inputSauce: [],
           inputMeat: "",
+          state: 1,
+          inputName: "",
+          inputAddress: "",
+          returnPedido: null,
         },
         computed: {
           bread() {
@@ -242,6 +356,33 @@
               default:
                 return "imagens/padrao/hamburguer.png";
             }
+          },
+        },
+        methods: {
+          fazerPedido() {
+            if (this.inputBread && this.inputMeat) {
+              this.state = 2;
+            } else {
+              alert("Escolha um tipo de Pão e uma Carne");
+            }
+          },
+          finalizarPedido() {
+            if (this.inputName && this.inputAddress) {
+              this.state = 3;
+              this.returnPedido = setTimeout(() => this.novoPedido(), 10000);
+            } else {
+              alert("Informe o Nome e o Endereço");
+            }
+          },
+          novoPedido() {
+            this.state = 1;
+            this.inputBread = "";
+            this.inputSalad = [];
+            this.inputSauce = [];
+            this.inputMeat = "";
+            this.inputName = "";
+            this.inputAddress = "";
+            this.returnPedido = null;
           },
         },
       });
