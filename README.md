@@ -4,20 +4,31 @@ Este é um projeto simples de montagem de lanches, onde você pode personalizar 
 
 ## Tecnologias Utilizadas
 
-- Vue.js
-- Bootstrap 5
+- **Vue.js:** Utilizado para a criação da interface interativa do projeto, permitindo a atualização dinâmica dos elementos da página com base nas escolhas do usuário.
+- **Bootstrap 5:** Utilizado para estilizar e organizar os elementos da página de forma responsiva e visualmente atraente.
+
+## Objetivo
+
+O objetivo deste projeto é aprimorar as habilidades em JavaScript e Vue.js, explorando conceitos como:
+
+- **Componentização:** Dividir a interface em componentes reutilizáveis para facilitar a manutenção e organização do código.
+- **Binding de Dados:** Utilizar diretivas do Vue.js para conectar os dados do modelo com a interface do usuário de forma reativa.
+- **Eventos:** Utilizar eventos do Vue.js para lidar com interações do usuário, como cliques em botões.
+- **Validação de Dados:** Implementar validações para garantir que os dados informados pelo usuário sejam válidos antes de finalizar o pedido.
+- **Gerenciamento de Estado:** Utilizar o estado do Vue.js para controlar o fluxo da aplicação, como a exibição de diferentes etapas do processo de montagem do lanche.
 
 ## Como Executar o Projeto
 
 1. Clone este repositório:
 
    ```bash
-   git clone https://github.com/patrickluizdev/vue2-skills.git
+   git clone https://github.com/seu-usuario/nome-do-repositorio.git
    ```
 
 2. Abra o arquivo `index.html` em um navegador web.
 
 [Ou acesse através do link](https://patrickluizdev.github.io/vue2-skills/pedidoLancheVue/)
+
 
 ## Como Utilizar
 
