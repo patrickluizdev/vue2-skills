@@ -22,7 +22,7 @@ O objetivo deste projeto é aprimorar as habilidades em JavaScript e Vue.js, exp
 1. Clone este repositório:
 
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   git clone https://github.com/patrickluizdev/vue2-skills.git
    ```
 
 2. Abra o arquivo `index.html` em um navegador web.
